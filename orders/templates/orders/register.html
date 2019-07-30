@@ -1,5 +1,22 @@
 {%extends "orders/layout.html"%}
 
 {%block body%}
-<h1>Register</h1>
+<div class="container">
+	<h1>Register</h1><hr>
+	<form action="{%url 'new_user'%}" method="post" id="register">
+		{%csrf_token%}
+		Username<br>
+		<input class="field" type="text" name="uname" required="required"><br>
+		Password<br>
+		<input class="field" type="password" name="pass" required="required"><br>
+		First name<br>
+		<input class="field" type="text" name="fname" required="required"><br>
+		Last name<br>
+		<input class="field" type="text" name="lname" required="required"><br>
+		Email<br>
+		<input class="field" type="text" name="email" required="required"><br>
+	</form>
+	<button class="btn" form="register">Register</button>
+	<a class="btn" href="{%url 'index'%}">Cancel</a>
+</div>
 {%endblock%}

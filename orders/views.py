@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -13,8 +14,7 @@ def index(request):
 		"pizza": Pizza.objects.all(),
 		"user": request.user
 	}
-	return render(request, "orders/login.html", {"message": None})
-	#return render(request, "orders/index.html", context)
+	return render(request, "orders/index.html", context)
 
 def login_view(request):
 	username = request.POST["username"]
@@ -33,3 +33,21 @@ def logout_view(request):
 
 def register(request):
 	return render(request, "orders/register.html")
+
+def new_user(request):
+	username = request.POST["uname"]
+	password = request.POST["pass"]
+	email = request.POST["email"]
+	fname = request.POST["fname"]
+	lname = request.POST["lname"]
+
+	try:
+		user=User.objects.create_user(username, email, password)
+		user.first_name = fname
+		user.last_name = lname
+		user.save()
+	except:
+		return render(request, "orders/login.html", {"message": "Error creating new user, username already taken"})
+
+	return render(request, "orders/login.html", {"message": "Successfully created new user!"})
+
