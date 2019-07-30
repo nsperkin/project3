@@ -1,16 +1,22 @@
 {%extends "orders/layout.html"%}
 
 {%block body%}
-<h1>Login</h1>
-{%if message%}
-<div>
-	{{message}}
+<div class="container">
+	<h1>Welcome to Pinochio's!</h1> <hr>
+	<h3>Login to get started</h3>
+	{%if message%}
+	<div class="message">
+		{{message}}
+	</div>
+	{%endif%}
+	<form action="{%url 'login'%}" method="post" id="login">
+		{%csrf_token%}
+		Username:<br>
+		<input class="field" type="text" name="username"><br>
+		Password:<br>
+		<input class="field" type="password" name="password"> <br>
+	</form>
+	<button class="btn" form="login">Login</button>
+	<a class="btn" href="{%url 'register'%}">Register</a>
 </div>
-{%endif%}
-<form action="{%url 'login'%}" method="post">
-	{%csrf_token%}
-	<input type="text" name="username">
-	<input type="password" name="password">
-	<input type="submit" value="login">
-</form>
 {%endblock%}

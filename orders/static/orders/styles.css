@@ -1,0 +1,40 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #239346
+}
+
+a {
+	text-decoration: none;
+}
+
+.message {
+	font-weight: bold;
+	margin: 10px;
+}
+
+.field {
+	border: none;
+	padding: 5px;
+	background-color: lightgrey;
+	border-radius: 25px;
+	margin: 5px;
+}
+
+.btn {
+	border: none;
+    font-size: medium;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 25px;
+}
+
+.container {
+	margin: 5% 25% 5% 25%;
+	border-radius: 25px;
+	padding: 10px 10px 40px 20px;
+	background-color: white;
+	border: 5px solid red;
+	text-align: center;
+}

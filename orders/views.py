@@ -13,7 +13,8 @@ def index(request):
 		"pizza": Pizza.objects.all(),
 		"user": request.user
 	}
-	return render(request, "orders/index.html", context)
+	return render(request, "orders/login.html", {"message": None})
+	#return render(request, "orders/index.html", context)
 
 def login_view(request):
 	username = request.POST["username"]
@@ -29,3 +30,6 @@ def login_view(request):
 def logout_view(request):
 	logout(request)
 	return render(request, "orders/login.html", {"message": "Logged Out"})
+
+def register(request):
+	return render(request, "orders/register.html")
