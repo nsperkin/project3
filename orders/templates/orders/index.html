@@ -1,5 +1,11 @@
 {%extends "orders/layout.html"%}
 
 {%block body%}
-<a class="btn" href="{%url 'logout'%}" method="post">Logout</a>
+<nav>
+	<p class="title">Pinochio's Pizza & Subs</p>
+	<a class="logout" href="{%url 'logout'%}">Logout</a>
+</nav>
+<div>
+	<h1>Orders</h1>
+</div>
 {%endblock%}
