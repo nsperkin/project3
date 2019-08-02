@@ -1,11 +1,47 @@
 {%extends "orders/layout.html"%}
 
+
+
 {%block body%}
 <nav>
 	<p class="title">Pinochio's Pizza & Subs</p>
 	<a class="logout" href="{%url 'logout'%}">Logout</a>
 </nav>
-<div>
-	<h1>Orders</h1>
+<h1 class="center">View the menu and make your orders below!</h1>
+<h3 class="center">Pizza</h4>
+<div id="pizza">
+	<table class="menu">
+		<tr>
+			<th>Style</th>
+			<th>Number of Toppings</th>
+			<th>Size</th>
+			<th>Price</th>
+		</tr>
+		{%for p in pizzas%}
+		<tr class="select">
+			<td>{{p.style}}</td>
+			<td>{{p.num_toppings}}</td>
+			<td>{{p.size}}</td>
+			<td>{{p.price|floatformat:2}}</td>
+		</tr>
+		{%endfor%}
+	</table>
 </div>
+
+<div class="toast">
+	<span class="close">&times;</span>
+	<h1 class="item center"></h1>
+	<form id="item" method="post" action="#">
+		<h4 class="sel center">Select your toppings</h4>
+		{%for t in toppings%}
+			<input class="top" type="checkbox" name="{{t}}" value="{{t}}">{{t}}<br>
+		{%endfor%}
+		
+	</form>
+	<hr>
+	<strong>Total: $</strong><span class="price"></span>
+	<button form="item" class="btn">Add to Order</button>
+</div>
+
+<p id="hey"></p>
 {%endblock%}

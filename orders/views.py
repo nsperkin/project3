@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import Pizza
+from .models import Pizza, Topping, Sub, Pasta, Salad, Dinner_Platter, Pizza_Order, Sub_Order, Order
 
 # Create your views here.
 def index(request):
@@ -11,8 +11,13 @@ def index(request):
 		return render(request, "orders/login.html", {"message": None})
 
 	context = {
-		"pizza": Pizza.objects.all(),
-		"user": request.user
+		"pizzas": Pizza.objects.all(),
+		"user": request.user,
+		"toppings": Topping.objects.all(),
+		"subs": Sub.objects.all(),
+		"pastas": Pasta.objects.all(),
+		"salads": Salad.objects.all(),
+		"dinner_platters": Dinner_Platter.objects.all()
 	}
 	return render(request, "orders/index.html", context)
 
