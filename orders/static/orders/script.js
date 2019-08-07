@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			const price = row.cells[3].innerHTML;
 			document.querySelector('.toast').style.visibility = "visible";
 			document.querySelector('.price').innerHTML = price;
+			document.querySelector('#extras').style.display = "none";
+			document.querySelector("#submit").setAttribute("form", "item");
+
+
 			if (num_toppings == 0) {
 				document.querySelector('.item').innerHTML = `${size} ${style} Cheese pizza`;
 				document.querySelector('#item').style.display = "none";
@@ -34,4 +38,36 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		};
 	});
+
+
+
+	document.querySelectorAll('.sel').forEach(function(row) {
+		row.onclick = () => {
+			const style = row.cells[0].innerHTML;
+			const size = row.cells[1].innerHTML;
+			const price = row.cells[2].innerHTML;
+			document.querySelector('.toast').style.visibility = "visible";
+			document.querySelector('.price').innerHTML = price;
+			document.querySelector('.item').innerHTML = `${size} ${style} Sub`;
+			document.querySelector('#item').style.display = "none";
+
+			var form = document.querySelector('#extras');
+			form.style.display = "block";
+			document.querySelector("#submit").setAttribute("form", "extras");
+		};
+	});
+
+	document.querySelectorAll('.xtra').forEach(function(extra) {
+		extra.onclick = () => {
+			var price = document.querySelector('.price')
+			if(extra.checked) {
+				price.innerHTML = (Number(price.innerHTML) + .5).toFixed(2);
+			}
+			else {
+				price.innerHTML = (Number(price.innerHTML) - .5).toFixed(2);
+			}
+		};
+	});
 });
+
+
