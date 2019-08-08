@@ -1,7 +1,5 @@
 {%extends "orders/layout.html"%}
 
-
-
 {%block body%}
 <nav>
 	<p class="title">Pinochio's Pizza & Subs</p>
@@ -9,7 +7,7 @@
 </nav>
 <h1 class="center">View the menu and make your orders below!</h1>
 <div id="pizza">
-	<h3 class="center">Pizza</h3>
+	<h3 class="center">Pizzas</h3>
 	<table class="menu">
 		<tr>
 			<th>Style</th>
@@ -18,7 +16,7 @@
 			<th>Price</th>
 		</tr>
 		{%for p in pizzas%}
-		<tr class="select">
+		<tr class="select sel1">
 			<td>{{p.style}}</td>
 			<td>{{p.num_toppings}}</td>
 			<td>{{p.size}}</td>
@@ -36,7 +34,7 @@
 			<th>Price</th>
 		</tr>
 		{%for s in subs%}
-		<tr class="sel">
+		<tr class="select sel2">
 			<td>{{s.style}}</td>
 			<td>{{s.size}}</td>
 			<td>{{s.price|floatformat:2}}</td>
@@ -44,26 +42,77 @@
 		{%endfor%}
 	</table>
 </div>
+<div id="pasta">
+	<h3 class="center">Pastas</h3>
+	<table class="menu">
+		<tr>
+			<th>Type</th>
+			<th>Price</th>
+		</tr>
+		{%for p in pastas%}
+			<tr class="select sel3">
+				<td>{{p.pasta}}</td>
+				<td>{{p.price|floatformat:2}}</td>
+			</tr>
+		{%endfor%}
+	</table>
+</div>
+<div id="salad">
+	<h3 class="center">Salads</h3>
+	<table class="menu">
+		<tr>
+			<th>Type</th>
+			<th>Price</th>
+		</tr>
+		{%for s in salads%}
+			<tr class="select sel4">
+				<td>{{s.salad}}</td>
+				<td>{{s.price|floatformat:2}}</td>
+			</tr>
+		{%endfor%}
+	</table>
+</div>
+<div id="dinner_platter">
+	<h3 class="center">Dinner Platters</h3>
+	<table class="menu">
+		<tr>
+			<th>Type</th>
+			<th>Size</th>
+			<th>Price</th>
+		</tr>
+		{%for d in dinner_platters%}
+			<tr class="select sel5">
+				<td>{{d.dinner_platter}}</td>
+				<td>{{d.size}}</td>
+				<td>{{d.price|floatformat:2}}</td>
+			</tr>
+		{%endfor%}
+	</table>
+</div>
 
 <div class="toast">
 	<span class="close">&times;</span>
 	<h1 class="item center"></h1>
-	<form id="item" method="post" action="#">
-		<h4 class="center">Select your toppings</h4>
-		{%for t in toppings%}
-			<input class="top" type="checkbox" name="{{t}}" value="{{t}}">{{t}}<br>
-		{%endfor%}
-		
+	<form id="item" method="post" action="{%url 'new_item'%}">
+		{%csrf_token%}
+		<div id="toppings">
+			<h4 class="center">Select your toppings</h4>
+			{%for t in toppings%}
+				<input class="top" type="checkbox" name="{{t}}" value="{{t}}">{{t}}<br>
+			{%endfor%}
+		</div>
+		<div id="extras">
+			<h4 class="center">Select Extras (+$.50)</h4>
+			<input class="xtra" type="checkbox" name="cheese" value="cheese">Extra Cheese<br>
+			<input class="xtra" type="checkbox" name="mushroom" value="mushroom">Extra Mushrooms<br>
+			<input class="xtra" type="checkbox" name="green_pepper" value="green_pepper">Extra Green Peppers<br>
+			<input class="xtra" type="checkbox" name="onion" value="onion">Extra Onions<br>
+		</div>
+		<hr>
+		<strong>Total: </strong>$<span class="price"></span>
+		<input id="price" type="hidden" name="price">
+		<button form="item" class="btn" id="submit">Add to Order</button>
 	</form>
-	<form id="extras" method="post" action="#">
-		<h4 class="center">Select Extras (+$.50)</h4>
-		<input class="xtra" type="checkbox" name="cheese" value="cheese">Extra Cheese<br>
-		<input class="xtra" type="checkbox" name="mushroom" value="mushroom">Extra Mushrooms<br>
-		<input class="xtra" type="checkbox" name="green_pepper" value="green_pepper">Extra Green Peppers<br>
-		<input class="xtra" type="checkbox" name="onion" value="onion">Extra Onions<br>
-	</form>
-	<hr>
-	<strong>Total: </strong>$<span class="price"></span>
-	<button form="item" class="btn" id="submit">Add to Order</button>
+
 </div>
 {%endblock%}

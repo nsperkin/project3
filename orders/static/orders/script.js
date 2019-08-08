@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+	
+	/*************************Pizza***************************/
 	var limit = 0;
-	document.querySelectorAll('.select').forEach(function(row) {
+	document.querySelectorAll('.sel1').forEach(function(row) {
 		row.onclick = () => {
 			const style = row.cells[0].innerHTML;
 			const num_toppings = row.cells[1].innerHTML;
@@ -10,24 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.toast').style.visibility = "visible";
 			document.querySelector('.price').innerHTML = price;
 			document.querySelector('#extras').style.display = "none";
-			document.querySelector("#submit").setAttribute("form", "item");
-
 
 			if (num_toppings == 0) {
-				document.querySelector('.item').innerHTML = `${size} ${style} Cheese pizza`;
-				document.querySelector('#item').style.display = "none";
+				document.querySelector('.item').innerHTML = `${size} ${style} Cheese Pizza`;
+				document.querySelector('#toppings').style.display = "none";
 			}
 			else {
 				document.querySelector('.item').innerHTML = `${size} ${style} ${num_toppings} Topping Pizza`;
-				document.querySelector('#item').style.display = "block";
+				document.querySelector('#toppings').style.display = "block";
 			}
 		};
 	});
 
-	document.querySelector('.close').onclick = () => {
-		document.querySelector('.toast').style.visibility = "hidden";
-	};
-
+	// set max number of toppings
 	var counter = 0;
 	document.querySelectorAll('.top').forEach(function(topping) {
 		topping.onclick = () => {
@@ -40,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 
-
-	document.querySelectorAll('.sel').forEach(function(row) {
+	/*************************Sub***************************/
+	document.querySelectorAll('.sel2').forEach(function(row) {
 		row.onclick = () => {
 			const style = row.cells[0].innerHTML;
 			const size = row.cells[1].innerHTML;
@@ -49,14 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.toast').style.visibility = "visible";
 			document.querySelector('.price').innerHTML = price;
 			document.querySelector('.item').innerHTML = `${size} ${style} Sub`;
-			document.querySelector('#item').style.display = "none";
+			document.querySelector('#toppings').style.display = "none";
 
-			var form = document.querySelector('#extras');
-			form.style.display = "block";
-			document.querySelector("#submit").setAttribute("form", "extras");
+			document.querySelector('#extras').style.display = "block";
 		};
 	});
 
+	// add %.50 for extras
 	document.querySelectorAll('.xtra').forEach(function(extra) {
 		extra.onclick = () => {
 			var price = document.querySelector('.price')
@@ -68,6 +64,58 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		};
 	});
+
+	/*************************Pasta***************************/
+	document.querySelectorAll('.sel3').forEach(function(row) {
+		row.onclick = () => {
+			const style = row.cells[0].innerHTML;
+			const price = row.cells[1].innerHTML;
+			document.querySelector('.toast').style.visibility = "visible";
+			document.querySelector('.price').innerHTML = price;
+			document.querySelector('.item').innerHTML = `${style} Pasta`;
+			document.querySelector('#toppings').style.display = "none";
+			document.querySelector('#extras').style.display = "none";
+		};
+	});
+
+	/*************************Salad***************************/
+	document.querySelectorAll('.sel4').forEach(function(row) {
+		row.onclick = () => {
+			const style = row.cells[0].innerHTML;
+			const price = row.cells[1].innerHTML;
+			document.querySelector('.toast').style.visibility = "visible";
+			document.querySelector('.price').innerHTML = price;
+			document.querySelector('.item').innerHTML = `${style}`;
+			document.querySelector('#toppings').style.display = "none";
+			document.querySelector('#extras').style.display = "none";
+
+		};
+	});
+
+	/*************************Dinner Platter***************************/
+	document.querySelectorAll('.sel5').forEach(function(row) {
+		row.onclick = () => {
+			const style = row.cells[0].innerHTML;
+			const size = row.cells[1].innerHTML;
+			const price = row.cells[2].innerHTML;
+			document.querySelector('.toast').style.visibility = "visible";
+			document.querySelector('.price').innerHTML = price;
+			document.querySelector('.item').innerHTML = `${size} ${style} Dinner Platter`;
+			document.querySelector('#toppings').style.display = "none";
+			document.querySelector('#extras').style.display = "none";
+		};
+	});
+
+	document.querySelector('#submit').onclick = () => {
+		var price = document.querySelector('.price').innerHTML;
+		document.querySelector('#price').setAttribute("value", price);
+	};
+
+
+	// Close Button
+	document.querySelector('.close').onclick = () => {
+		document.querySelector('.toast').style.visibility = "hidden";
+	};
 });
 
 

@@ -92,14 +92,6 @@ th, td {
 	cursor: pointer;
 }
 
-.sel:hover {
-	background-color:#f5f5f5;
-}
-
-.sel {
-	cursor: pointer;
-}
-
 
 .wrapper {
 	display: flex;

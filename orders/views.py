@@ -56,3 +56,6 @@ def new_user(request):
 
 	return render(request, "orders/login.html", {"message": "Successfully created new user!"})
 
+def new_item(request):
+	x = request.POST["price"]
+	return HttpResponse(x)
