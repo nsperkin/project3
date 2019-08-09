@@ -149,3 +149,7 @@ th, td {
 	border: 5px solid red;
 	text-align: center;
 }
+
+.pk {
+	display: none;
+}

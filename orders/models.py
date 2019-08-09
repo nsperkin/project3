@@ -44,7 +44,7 @@ class Sub_Order(models.Model):
 	user = models.CharField(max_length=64)
 
 	def __str__(self):
-		return self.sub
+		return f"{self.sub}"
 
 class Pasta(models.Model):
 	pasta = models.CharField(max_length=64)
@@ -76,3 +76,4 @@ class Order(models.Model):
 	dinner_platters = models.ManyToManyField(Dinner_Platter, blank=True)
 	total = models.FloatField()
 	user = models.CharField(max_length=64)
+	final = models.BooleanField(default=False)

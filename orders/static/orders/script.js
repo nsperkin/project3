@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.toast').style.visibility = "visible";
 			document.querySelector('.price').innerHTML = price;
 			document.querySelector('#extras').style.display = "none";
+			document.querySelector('#new').setAttribute("value", "pizza")
+			document.querySelector('#pk').setAttribute("value", row.cells[4].innerHTML);
 
 			if (num_toppings == 0) {
 				document.querySelector('.item').innerHTML = `${size} ${style} Cheese Pizza`;
@@ -47,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.price').innerHTML = price;
 			document.querySelector('.item').innerHTML = `${size} ${style} Sub`;
 			document.querySelector('#toppings').style.display = "none";
+			document.querySelector('#new').setAttribute("value", "sub");
+			document.querySelector('#pk').setAttribute("value", row.cells[3].innerHTML);
+
+
 
 			document.querySelector('#extras').style.display = "block";
 		};
@@ -75,6 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.item').innerHTML = `${style} Pasta`;
 			document.querySelector('#toppings').style.display = "none";
 			document.querySelector('#extras').style.display = "none";
+			document.querySelector('#new').setAttribute("value", "pasta");
+			document.querySelector('#pk').setAttribute("value", row.cells[2].innerHTML);
+
 		};
 	});
 
@@ -88,6 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.item').innerHTML = `${style}`;
 			document.querySelector('#toppings').style.display = "none";
 			document.querySelector('#extras').style.display = "none";
+			document.querySelector('#new').setAttribute("value", "salad");
+			document.querySelector('#pk').setAttribute("value", row.cells[2].innerHTML);
 
 		};
 	});
@@ -103,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('.item').innerHTML = `${size} ${style} Dinner Platter`;
 			document.querySelector('#toppings').style.display = "none";
 			document.querySelector('#extras').style.display = "none";
+			document.querySelector('#new').setAttribute("value", "dinner_platter");
+			document.querySelector('#pk').setAttribute("value", row.cells[3].innerHTML);
 		};
 	});
 

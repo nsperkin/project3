@@ -57,5 +57,50 @@ def new_user(request):
 	return render(request, "orders/login.html", {"message": "Successfully created new user!"})
 
 def new_item(request):
-	x = request.POST["price"]
-	return HttpResponse(x)
+	price = request.POST["price"]
+	toppings = request.POST.getlist("toppings")
+	item = request.POST["new"]
+	pk = request.POST["pk"]
+	user = request.user.username
+	try:
+		order = Order.objects.get(user=user, final=False)
+	except:
+		order = Order(user=user, total=0)
+		order.save()
+
+	if item=="pizza":
+		toppings = request.POST.getlist("toppings")
+		p = Pizza.objects.get(pk=pk)
+		po = Pizza_Order(pizza=p, user=user)
+		po.save()
+		for t in toppings:
+			top = Topping.objects.get(topping=t)
+			po.toppings.add(top)
+		order.pizza_orders.add(po)
+
+
+	elif item=="sub":
+		extras = request.POST.getlist("extra")
+		s = Sub.objects.get(pk=pk)
+		so = Sub_Order(sub=s, user=user)
+		so.save()
+		for x in extras:
+			setattr(so, x, True)
+			so.save()
+		order.sub_orders.add(so)
+
+	elif item=="pasta":
+		p = Pasta.objects.get(pk=pk)
+		order.pastas.add(p)
+
+	elif item=="salad":
+		s = Salad.objects.get(pk=pk)
+		order.salads.add(s)
+
+	else:
+		dp = Dinner_Platter.objects.get(pk=pk)
+		order.dinner_platters.add(dp)
+
+	order.total = order.total + float(price)
+	order.save()
+	return HttpResponse(price)

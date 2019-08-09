@@ -14,17 +14,18 @@
 			<th>Number of Toppings</th>
 			<th>Size</th>
 			<th>Price</th>
-		</tr>
 		{%for p in pizzas%}
 		<tr class="select sel1">
 			<td>{{p.style}}</td>
 			<td>{{p.num_toppings}}</td>
 			<td>{{p.size}}</td>
 			<td>{{p.price|floatformat:2}}</td>
+			<td class="pk">{{p.pk}}</td>
 		</tr>
 		{%endfor%}
 	</table>
 </div>
+
 <div id="sub">
 	<h3 class="center">Subs</h3>
 	<table class="menu">
@@ -38,6 +39,7 @@
 			<td>{{s.style}}</td>
 			<td>{{s.size}}</td>
 			<td>{{s.price|floatformat:2}}</td>
+			<td class="pk">{{s.pk}}</td>
 		<tr>
 		{%endfor%}
 	</table>
@@ -53,6 +55,7 @@
 			<tr class="select sel3">
 				<td>{{p.pasta}}</td>
 				<td>{{p.price|floatformat:2}}</td>
+				<td class="pk">{{p.pk}}</td>
 			</tr>
 		{%endfor%}
 	</table>
@@ -68,6 +71,7 @@
 			<tr class="select sel4">
 				<td>{{s.salad}}</td>
 				<td>{{s.price|floatformat:2}}</td>
+				<td class="pk">{{s.pk}}</td>
 			</tr>
 		{%endfor%}
 	</table>
@@ -85,6 +89,7 @@
 				<td>{{d.dinner_platter}}</td>
 				<td>{{d.size}}</td>
 				<td>{{d.price|floatformat:2}}</td>
+				<td class="pk">{{d.pk}}</td>
 			</tr>
 		{%endfor%}
 	</table>
@@ -98,19 +103,21 @@
 		<div id="toppings">
 			<h4 class="center">Select your toppings</h4>
 			{%for t in toppings%}
-				<input class="top" type="checkbox" name="{{t}}" value="{{t}}">{{t}}<br>
+				<input class="top" type="checkbox" name="toppings" value="{{t}}">{{t}}<br>
 			{%endfor%}
 		</div>
 		<div id="extras">
 			<h4 class="center">Select Extras (+$.50)</h4>
-			<input class="xtra" type="checkbox" name="cheese" value="cheese">Extra Cheese<br>
-			<input class="xtra" type="checkbox" name="mushroom" value="mushroom">Extra Mushrooms<br>
-			<input class="xtra" type="checkbox" name="green_pepper" value="green_pepper">Extra Green Peppers<br>
-			<input class="xtra" type="checkbox" name="onion" value="onion">Extra Onions<br>
+			<input class="xtra" type="checkbox" name="extra" value="cheese">Extra Cheese<br>
+			<input class="xtra" type="checkbox" name="extra" value="mushroom">Extra Mushrooms<br>
+			<input class="xtra" type="checkbox" name="extra" value="green_pepper">Extra Green Peppers<br>
+			<input class="xtra" type="checkbox" name="extra" value="onion">Extra Onions<br>
 		</div>
 		<hr>
 		<strong>Total: </strong>$<span class="price"></span>
 		<input id="price" type="hidden" name="price">
+		<input id="new" type="hidden" name="new">
+		<input id="pk" type="hidden" name="pk">
 		<button form="item" class="btn" id="submit">Add to Order</button>
 	</form>
 
