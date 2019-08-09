@@ -4,8 +4,14 @@
 <nav>
 	<p class="title">Pinochio's Pizza & Subs</p>
 	<a class="logout" href="{%url 'logout'%}">Logout</a>
+	<a class="logout cart" href="{%url 'cart'%}">Cart</a>
 </nav>
 <h1 class="center">View the menu and make your orders below!</h1>
+<div class="message">
+	{%if message%}
+		{{message}}
+	{%endif%}
+</div>
 <div id="pizza">
 	<h3 class="center">Pizzas</h3>
 	<table class="menu">

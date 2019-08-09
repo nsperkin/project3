@@ -1,0 +1,66 @@
+{%extends "orders/layout.html"%}
+
+{%block body%}
+<nav>
+	<p class="title">Pinochio's Pizza & Subs</p>
+	<a class="logout" href="{%url 'logout'%}">Logout</a>
+</nav>
+
+<h1 class="center">Shopping Cart</h1>
+
+<div id="cart">
+	{%if order.pizza_orders.all%}
+	<h3 class="center">Pizzas</h3>
+	<ul>
+	{%for p in order.pizza_orders.all%}
+		<li>{{p}}</li>
+	{%endfor%}
+	</ul>
+	<hr>
+	{%endif%}
+
+	{%if order.sub_orders.all%}
+	<h3 class="center">Subs</h3>
+	<ul>
+		{%for s in order.sub_orders.all%}
+		<li>{{s}}</li>
+		{%endfor%}
+	</ul>
+	<hr>
+	{%endif%}
+
+	{%if order.pastas.all%}
+	<h3 class="center">Pastas</h3>
+	<ul>
+		{%for s in order.pastas.all%}
+		<li>{{s}}</li>
+		{%endfor%}
+	</ul>
+	<hr>
+	{%endif%}
+
+	{%if order.salads.all%}
+	<h3 class="center">Salads</h3>
+	<ul>
+		{%for s in order.salads.all%}
+		<li>{{s}}</li>
+		{%endfor%}
+	</ul>
+	<hr>
+	{%endif%}
+
+	{%if order.dinner_platters.all%}
+	<h3 class="center">Dinner Platters</h3>
+	<ul>
+		{%for s in order.dinner_platters.all%}
+		<li>{{s}}</li>
+		{%endfor%}
+	</ul>
+	<hr>
+	{%endif%}
+
+	<br>
+	<strong>Total: </strong>$<span>{{order.total|floatformat:2}}</span>
+	<a class="btn mtop" href="{%url 'submit'%}">Order</a>
+</div>
+{%endblock%}

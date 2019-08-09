@@ -103,4 +103,19 @@ def new_item(request):
 
 	order.total = order.total + float(price)
 	order.save()
-	return HttpResponse(price)
+	return HttpResponseRedirect(reverse("index"))
+
+def cart(request):
+	try:
+		user = request.user.username
+		order = Order.objects.get(user=user, final=False)
+	except:
+		return HttpResponseRedirect(reverse("index"))
+
+	return render(request, "orders/cart.html", {"order":order})
+
+def submit(request):
+	order = Order.objects.get(user=request.user.username, final=False)
+	order.final = True
+	order.save()
+	return HttpResponseRedirect(reverse('index'))

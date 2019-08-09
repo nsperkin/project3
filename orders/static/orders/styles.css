@@ -153,3 +153,13 @@ th, td {
 .pk {
 	display: none;
 }
+
+.cart {
+	margin-right: 5px;
+}
+
+#cart {
+	border-radius: 25px;
+	background-color: white;
+	padding: 5px 25px 25px 25px;
+}
