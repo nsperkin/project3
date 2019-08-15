@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'pizza.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dahmja0odgbkaj',
+        'USER': 'obrmipwmshyzsy',
+        'HOST': 'ec2-54-235-167-210.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'PASSWORD': '4ce2bc8d431ceedb280e598e081188d3842da6dd3a7f922b84a537ff26b64c94'
     }
 }
 
